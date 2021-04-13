@@ -23,8 +23,24 @@
                 <small class="form-text text-muted">{{ form.name.errors }}.</small>
             </form>
 
+            <h1 class="mt-5">Tarefas Pendentes</h1>
+
+            {% for task in task_bagger %}
+                <form>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" aria-label="Checkbox para tarefa">
+                            </div>
+                        </div>
+                            <input type="text" class="form-control" aria-label="Text input para tarefa" value="{{ task.name }}">
+                        </div>
+                </form>
+             {% endfor %}
         </div>
     </div>
+
+
 
 </div>
 </body>
