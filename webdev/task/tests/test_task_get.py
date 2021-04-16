@@ -27,12 +27,25 @@ def list_task_beggar(db):
     Task.objects.bulk_create(task)
     return task
 
+@pytest.fixture
+def list_task_done(db):    
+    task = [
+        Task(name='Tak 1', done=True),
+        Task(name='Tak 2', done=True),
+        ]
+    Task.objects.bulk_create(task)
+    return task
+
 
 @pytest.fixture
-def response_list_task(client, list_task_beggar):    
+def response_list_task(client, list_task_beggar, list_task_done):    
     resp = client.get(reverse('task:home'))
     return resp
 
 def response_with_list_task(list_task_beggar,  response_list_task):
     for task in response_list_task:
+        assertContains(response_list_task, task.name)
+
+def response_with_list_task_done(list_task_done,  response_list_task):
+    for task in list_task_done:
         assertContains(response_list_task, task.name)

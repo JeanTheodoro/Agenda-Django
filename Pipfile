@@ -6,10 +6,13 @@ name = "pypi"
 [packages]
 django = "*"
 gunicorn = "*"
+pylint-django = "*"
 
 [dev-packages]
 pytest-django = "*"
 flake8 = "*"
+pylint = "*"
+pylint-django = "*"
 
 [requires]
 python_version = "3.8"
