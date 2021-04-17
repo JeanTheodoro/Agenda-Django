@@ -40,21 +40,37 @@
 
              {% endfor %}
 
-             <h2 class="mt-5">Tarefas Já Concluidas</h2>
-
+             <h2 class="mt-5">Tarefas Realizadas</h2>
+               
             {% for task in task_done %}
-                <form action="{% url 'task:detail' task_id=task.id %}" method="post">
-                    {% csrf_token %}
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Descreva sua Tarefa" required='required' aria-label="Descreva sua Tarefa" name="name" value="{{ task.name }}">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-warning"  id="button-addon2">Marcar Como Pendente</button>
-                        </div>
-                    </div>  
-         
-                </form>
 
-             {% endfor %}
+                <div class="row">
+                    <div class="col-2">
+                        <form action="{% url 'task:delete' task_id=task.id %}" method="post">
+                            {% csrf_token %}
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-danger"  id="button-addon2">Apagar</button>
+                                </div>
+                            </div>  
+            
+                        </form>
+                    </div>
+                <div class="col-10">
+                    <form action="{% url 'task:detail' task_id=task.id %}" method="post">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Descreva sua Tarefa" required='required' aria-label="Descreva sua Tarefa" name="name" value="{{ task.name }}">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-warning"  id="button-addon2">Marcar Como Pendente</button>
+                            </div>
+                        </div>  
+            
+                    </form>
+                </div/>
+            </div>   
+
+        {% endfor %}
         </div>
     </div>
 
